@@ -12,11 +12,11 @@ public class Performance {
 	 *
 	 *         /** einfach verlinkte Liste als Objektvariable
 	 */
-	private LineareArrayListe<Integer> al;
+	private ListeAlsArray<Integer> al;
 	/**
 	 * doppelt verloinkte Liste als Objektvariable
 	 */
-	private DoppeltVerketteteListe<Integer> dl;
+	private ListeDoppeltVerkettet<Integer> dl;
 
 	/**
 	 * Konstruktor
@@ -24,7 +24,7 @@ public class Performance {
 	 * @param l1
 	 * @param l2
 	 */
-	public Performance(LineareArrayListe<Integer> l1, DoppeltVerketteteListe<Integer> l2) {
+	public Performance(ListeAlsArray<Integer> l1, ListeDoppeltVerkettet<Integer> l2) {
 		this.al = l1;
 		this.dl = l2;
 	}
@@ -155,7 +155,7 @@ public class Performance {
 		return true;
 	}
 
-	public void mitteln() {
+	public void mittelnEinfuegen() {
 		long anfangAL = 0;
 		long anfangDL = 0;
 		long randomAL = 0;
@@ -184,6 +184,42 @@ public class Performance {
 		System.out.println("Der Mittelwert für das Einfuegen am Ende in einer einfachen Liste ist: " + endAL);
 		System.out.println("Der Mittelwert für das Einfuegen am Ende in einer doppelt verketteten Liste ist: " + endDL);
 	}
+	
+	public void mittelnLoeschen() {
+		long anfangAL = 0;
+		long anfangDL = 0;
+		long randomAL = 0;
+		long randomDL = 0;
+		long endAL = 0;
+		long endDL = 0;
+		for (int i = 0; i < 10; i++) {
+			anfangsEinfuegenAL();
+			anfangAL += anfangsLoeschenAL();
+			anfangsEinfuegenDL();
+			anfangDL += anfangsLoeschenDL();
+			anfangsEinfuegenAL();
+			randomAL += rndLoeschenAL();
+			anfangsEinfuegenDL();
+			randomDL += rndLoeschenDL();
+			anfangsEinfuegenAL();
+			endAL += amEndeLoeschenAL();
+			anfangsEinfuegenDL();
+			endDL += amEndeLoeschenDL();
+		}
+		anfangAL /= 10;
+		anfangDL /= 10;
+		randomAL /= 10;
+		randomDL /= 10;
+		endAL /= 10;
+		endDL /= 10;
+		System.out.println("Der Mittelwert für das Löschen am Anfang einer einfachen Liste ist: " + anfangAL);
+		System.out.println("Der Mittelwert für das Löschen am Anfang doppelt verketteten Liste ist: " + anfangDL);
+		System.out.println("Der Mittelwert für das zufällige Löschen in einer einfachen Liste ist: " + randomAL);
+		System.out.println(
+				"Der Mittelwert für das zufällige Löschen in einer doppelt verketteten Liste ist: " + randomDL);
+		System.out.println("Der Mittelwert für das Löschen am Ende in einer einfachen Liste ist: " + endAL);
+		System.out.println("Der Mittelwert für das Löschen am Ende in einer doppelt verketteten Liste ist: " + endDL);
+	}
 
 	public long anfangsLoeschenAL() {
 		long timeArrayList = System.currentTimeMillis();
@@ -200,13 +236,43 @@ public class Performance {
 		}
 		return timeArrayList = System.currentTimeMillis() - timeArrayList;
 	}
+	
+	public long amEndeLoeschenAL() {
+		long timeArrayList = System.currentTimeMillis();
+		for (int i = 0; i <= 1000; i++) {
+			al.deleteElement(al.getCount()-1);
+		}
+		return timeArrayList = System.currentTimeMillis() - timeArrayList;
+	}
+	
+	public long amEndeLoeschenDL() {
+		long timeArrayList = System.currentTimeMillis();
+		for (int i = 0; i <= 1000; i++) {
+			dl.deleteElement(dl.getCount()-1);
+		}
+		return timeArrayList = System.currentTimeMillis() - timeArrayList;
+	}
+	
+	public long rndLoeschenAL() {
+		long timeArrayList = System.currentTimeMillis();
+		for (int i = 0; i <= 1000; i++) {
+			al.deleteElement((int)(al.getCount()*Math.random()));
+		}
+		return timeArrayList = System.currentTimeMillis() - timeArrayList;
+	}
+	
+	public long rndLoeschenDL() {
+		long timeArrayList = System.currentTimeMillis();
+		for (int i = 0; i <= 1000; i++) {
+			dl.deleteElement((int)(dl.getCount()*Math.random()));
+		}
+		return timeArrayList = System.currentTimeMillis() - timeArrayList;
+	}
 
 
 	public static void main(String[] args) {
-		Performance p1 = new Performance(new LineareArrayListe<Integer>(), new DoppeltVerketteteListe<Integer>());
-		// p1.anfangsEinfuegen();
-		// p1.randomEinfuegen();
-		// p1.endeEinfuegen();
-		p1.mitteln();
+		Performance p1 = new Performance(new ListeAlsArray<Integer>(), new ListeDoppeltVerkettet<Integer>());
+		p1.mittelnEinfuegen();
+		p1.mittelnLoeschen();
 	}
 }
