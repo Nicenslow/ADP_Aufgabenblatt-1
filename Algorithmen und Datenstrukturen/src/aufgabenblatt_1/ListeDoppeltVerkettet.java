@@ -15,20 +15,7 @@ public class ListeDoppeltVerkettet<T> implements LineareListen<T> {
 		return count ;
 	}
 	
-	/*public int getCount() {
-		int count = 1;
-		if (head == null) {
-			return 0;
-		} else {
-			Knoten<T> temp = new Knoten<T>(head.getDaten());
-			while (temp.getNachfolger() != null) {
-				temp = temp.getNachfolger();
-				count++;
-			}
-		}
-		return count;
-	}
-*/
+	
 	@Override
 	public boolean insertElement(int pos, T element) {
 		if (head == null && pos == 0) {
@@ -39,13 +26,14 @@ public class ListeDoppeltVerkettet<T> implements LineareListen<T> {
 		} else if (pos < 0 || pos > getCount()) {
 			throw new IllegalArgumentException(" invalid index");
 		} else {
-			count ++;
 			Knoten<T> insert = new Knoten<T>(element);
 			if (pos == getCount()) {
+				count ++;
 				insert.setVorgaenger(tail);
 				insert.getVorgaenger().setNachfolger(insert);
 				tail = insert;
 			} else if (pos == 0) {
+				count ++;
 				insert.setNachfolger(head);
 				insert.getNachfolger().setVorgaenger(insert);
 				head = insert;
@@ -54,11 +42,37 @@ public class ListeDoppeltVerkettet<T> implements LineareListen<T> {
 				insert.setNachfolger(getKnoten(pos));
 				insert.getVorgaenger().setNachfolger(insert);
 				insert.getNachfolger().setVorgaenger(insert);
+				count ++;
 			}
 		}
 		return true;
 	}
 
+
+	@Override
+	public boolean deleteElement(int pos) {
+		if (head == null || pos < 0 || pos > getCount()) {
+			throw new IllegalArgumentException("invalid index");
+		}else if (pos == getCount()-1) {
+			count --;
+			tail = tail.getVorgaenger();
+			tail.setNachfolger(null);
+		}else if ( pos == 0) {
+			count--;
+			head = head.getNachfolger();
+			if(head == null) {
+				return true;
+			}
+			head.setVorgaenger(null);
+		}else {
+			Knoten<T> temp = getKnoten(pos);
+			temp.getVorgaenger().setNachfolger(temp.getNachfolger());
+			temp.getNachfolger().setVorgaenger(temp.getVorgaenger());
+			count--;
+		}
+		return true;
+	}
+	
 	public Knoten<T> getKnoten(int pos){
 		if (head == null || pos < 0 || pos > getCount()) {
 			throw new IllegalArgumentException("invalid index");
@@ -76,35 +90,6 @@ public class ListeDoppeltVerkettet<T> implements LineareListen<T> {
 			return temp;
 		}
 
-	}
-		
-
-		
-
-	
-	@Override
-	public boolean deleteElement(int pos) {
-		if (head == null || pos < 0 || pos > getCount()) {
-			throw new IllegalArgumentException("invalid index");
-		}else if (pos == getCount()) {
-			count --;
-			tail = tail.getVorgaenger();
-			tail.setNachfolger(null);
-		}else if ( pos == 0) {
-			count--;
-			head = head.getNachfolger();
-			if(head == null) {
-				return true;
-			}
-			head.setVorgaenger(null);
-		}else {
-			
-			Knoten<T> temp = getKnoten(pos);
-			temp.getVorgaenger().setNachfolger(temp.getNachfolger());
-			temp.getNachfolger().setVorgaenger(temp.getVorgaenger());
-			count--;
-		}
-		return true;
 	}
 
 	@Override

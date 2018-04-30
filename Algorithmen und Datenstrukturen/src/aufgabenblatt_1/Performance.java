@@ -62,14 +62,7 @@ public class Performance {
 	 * 
 	 * @return true
 	 */
-	public boolean insertAtStart() {
-		System.out.println(
-				"10000 Elemente anfangs einfügen in der ArrayList dauert " + anfangsEinfuegenAL() + " Millisekunden");
-		System.out.println("10000 Elemente anfangs einfügen in der Doppelt verlinkten List dauert "
-				+ anfangsEinfuegenDL() + " Millisekunden");
-		System.out.println();
-		return true;
-	}
+
 
 	// Hilfsmethode zum zufälligen Einfügen von Elementen in die einfach
 	// verkettete Liste
@@ -104,14 +97,7 @@ public class Performance {
 	 * 
 	 * @return boolean
 	 */
-	public boolean insertRandomly() {
-		System.out.println(
-				"10000 Elemente zufällig einfügen in der ArrayList dauert " + randomEinfuegenAL() + " Millisekunden");
-		System.out.println("10000 Elemente zufällig einfügen in der Doppelt verlinkten List dauert "
-				+ randomEinfuegenDL() + " Millisekunden");
-		System.out.println();
-		return true;
-	}
+
 
 	// Hilfsmethode, die am Ende einer einfach verketteten Liste 10.000 Elemente
 	// einfügt
@@ -146,14 +132,7 @@ public class Performance {
 	 * 
 	 * @return boolean
 	 */
-	public boolean InsertAtEnd() {
-		System.out.println(
-				"10000 Elemente am Ende einfügen in der ArrayList dauert " + endeEinfuegenAL() + " Millisekunden");
-		System.out.println("10000 Elemente am Ende einfügen in der Doppelt verlinkten Liste dauert " + endeEinfuegenDL()
-				+ " Millisekunden");
-		System.out.println();
-		return true;
-	}
+
 
 	public void mittelnEinfuegen() {
 		long anfangAL = 0;
