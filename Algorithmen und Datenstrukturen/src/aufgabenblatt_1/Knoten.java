@@ -12,6 +12,11 @@ public class Knoten<T> {
 		nachfolger = null;
 		vorgaenger = null;
 	}
+	
+	public Knoten (){
+		nachfolger = null;
+		vorgaenger = null;
+	}
 
 
 	public T getDaten() {
