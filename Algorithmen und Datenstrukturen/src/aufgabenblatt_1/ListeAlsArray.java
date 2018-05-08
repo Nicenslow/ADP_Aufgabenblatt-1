@@ -15,6 +15,9 @@ public class ListeAlsArray<T> implements LineareListen<T> {
 
 	@Override
 	public int getCount() {
+		if (liste == null){
+			return  0;
+		}
 		return liste.length;
 	}
 
