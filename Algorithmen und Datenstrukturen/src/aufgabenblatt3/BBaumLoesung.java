@@ -84,7 +84,11 @@ public class BBaumLoesung<T extends Comparable<T>, U> extends BBaum<T, U> {
         knoten.addSchluesselWertPaar(knoten.getAnzahlSchluesselWertPaare(), element);
     }
     
-
+    /**
+     * Hilfsmethode zum Teilen des Knotens, sollte dieser zu voll sein
+     *
+     * @param knoten	Knoten, der geteilt werden muss
+     */
     private void teileKnoten(BBaumKnoten<T, U> knoten) {
         int mittlereKnoten = knoten.getAnzahlSchluesselWertPaare() / 2;
         // erstellen zwei neuer Blattknoten und anschließend das Kopieren der alten Schlüssel in diese neuen Blattknoten

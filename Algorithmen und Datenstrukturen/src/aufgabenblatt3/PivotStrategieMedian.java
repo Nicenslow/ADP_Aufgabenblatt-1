@@ -16,17 +16,11 @@ public class PivotStrategieMedian implements PivotStrategie {
 				ausgabe = i;
 			}
 		}
-		if (ausgabe > iRechts){
+		/*if (ausgabe > iRechts){
 			return (iLinks+ iRechts) /2 ;
 		}
+		*/
 		return ausgabe;
 	}
-
-	/*@Override
-	public <T extends Comparable<T>, U> int getIndex(SchluesselWertPaar<T, U>[] a, int iLinks, int iRechts) {
-		return (iLinks + iRechts) / 2 ;
-		
-	}
-	*/
 
 }
